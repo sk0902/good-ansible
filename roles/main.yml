@@ -15,3 +15,18 @@
   roles:
   - frontend
 
+- hosts: frontends
+  gather_facts: true
+  tasks:
+  - name: url test
+    uri:
+     url: "http://{{ inventory_hostname }}"
+     return_content: yes
+    register: output
+    tags:
+    - test
+    failed_when: "'Tomcat' not in output.content"
+  - debug:
+     var: output
+    tags:
+    - test
