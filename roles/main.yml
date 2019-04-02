@@ -1,0 +1,17 @@
+---
+
+- hosts: appdbs
+  become: yes
+  roles:
+  - db-tier
+
+- hosts: apps
+  become: yes
+  roles:
+  - app-tier
+
+- hosts: frontends
+  become: yes
+  roles:
+  - frontend
+
